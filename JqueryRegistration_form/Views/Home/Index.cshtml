@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation with jQuery</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+        body{
+            font-style: inherit;
+            font-weight: bold;
+            /* background-image: url('https://as1.ftcdn.net/v2/jpg/06/51/61/96/1000_F_651619611_McfcdenBp2e3JOdQAkI7xViefiPNFS7v.jpg'); */
+            background-color: darkgray;
+        }
+
+      .container {
+        background-color: rgb(226, 176, 141);;
+        border-radius: 20px;
+        border: 1 px sold blanchedalmond;
+      }
+      .text-center{
+        background-color: rgb(225, 171, 132);
+        border-radius: 20px; 
+      }
+      .form-control{
+        border-radius: 20px;
+      }
+    </style>
+
+
+
+
+  </head>
+  <body>
+
+    <div class="text-center">
+      <h1 >REGISTRATION FORM</h1>
+      <h3> All The Details Are Mandetory Plese Fill Out All The Fields</h3>
+    </div>
+
+    <div class="container mt-3">
+      <div class="text-center">
+           
+        </div>
+      <form id="myForm">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username"name="username"/>
+          <small class="text-danger" id="usernameError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" class="form-control" id="email" name="email" />
+          <small class="text-danger" id="emailError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" class="form-control" id="phone" name="phone" />
+          <small class="text-danger" id="phoneError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" name="password"/>
+          <small class="text-danger" id="passwordError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="password"> Confirm Password:</label>
+          <input type="password" class="form-control" id="Cnfpassword" name="password"/>
+          <small class="text-danger" id="passwordError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select class="form-control" id="gender" name="gender">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+          <small class="text-danger" id="genderError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <textarea class="form-control" id="address" name="address"></textarea>
+          <small class="text-danger" id="addressError"></small>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#myForm").submit(function (event) {
+          event.preventDefault();
+          $(".text-danger").html("");
+
+          var username = $("#username").val();
+          var email = $("#email").val();
+          var phone = $("#phone").val();
+          var password = $("#password").val();
+          var confirmpassword =$("Cnfpassword").val();
+          var gender = $("#gender").val();
+          var address = $("#address").val();
+
+          if (username === "") {
+            $("#usernameError").html("Please enter a username");
+            return;
+          }
+
+         else if (email === "") {
+            $("#emailError").html("Please enter an email address");
+            return;
+          }
+          else if (email.indexOf("@@")<=0){
+            $("#emailError").html("Invalid @@ position");
+            return false;
+          }
+          else if (
+            email.charAt(email.length - 4) != "." &&
+            email.charAt(email.length - 3) != "."
+          ) {
+            $("#emailError").html("Invalid . position");
+            return;
+          }
+
+          else if (phone === "") {
+            $("#phoneError").html("Please enter a phone number");
+            return;
+          }
+
+          else if (password ==Cnfpassword) {
+            $("#passwordError").html("Please enter same password");
+            return;
+          }
+
+
+
+          else if (gender === "") {
+            $("#genderError").html("Please select a gender");
+            return;
+          }
+
+          else  if (address === "") {
+            $("#addressError").html("Please enter an address");
+            return;
+          }
+          
+          else{
+            alert("Form submitted successfully!");
+            return true;
+            
+          }
+         
+
+            $("#myForm").submit();
+        });
+      });
+    </script>
+  </body>
+</html>
